@@ -1,6 +1,6 @@
 //bring in express
 const express = require('express');
-//initialize aoo variable with express
+//initialize app variable with express
 const app = express();
 
 app.get('/', (req, res) => res.send('API Running'));
