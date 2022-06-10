@@ -1,3 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://Eli:LNjg377058518@cluster0.4jc5m.mongodb.net/?retryWrites=true&w=majority"
+    "mongoURI": "mongodb+srv://Eli:LNjg377058518@cluster0.4jc5m.mongodb.net/?retryWrites=true&w=majority",
+    "jwtSecret": "elisecrettoken"
 }
