@@ -6,7 +6,7 @@ const request = require('request');
 const config = require('config');
 
 const Profile = require('../../models/Profile');
-const User = require('../../models/Profile');
+const User = require('../../models/User');
 
 //@route  GET api/profile/me
 //@desc   Get current users profile
@@ -342,4 +342,5 @@ router.get('/github/:username', (req, res) => {
         res.status(500).send('Server Error');
     }
 });
+
 module.exports = router;
