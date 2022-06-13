@@ -1,19 +1,18 @@
-import React from 'react'
+import React from 'react';
 
 const Navbar = () => {
     return (
         <nav className="navbar bg-dark">
             <h1>
-                <a href="index.html"><i className="fas fa-code"></i>DevConnector</a>
+                <a href="index.html"><i className="fas fa-code"></i> DevConnector</a>
             </h1>
-            <url>
+            <div>
                 <li><a href="profiles.html">Developers</a></li>
                 <li><a href="register.html">Register</a></li>
                 <li><a href="login.html">Login</a></li>
-            </url>
-
+            </div>
         </nav>
     )
-}
+};
 
-export default Navbar
+export default Navbar;
