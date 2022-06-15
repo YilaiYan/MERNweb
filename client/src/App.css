@@ -312,11 +312,8 @@ button {
   opacity: 0.9;
 }
 
-.navbar ul, li {
-  /*
-  .navbar ul{display: flex;}
-  */
-  display:inline;
+.navbar ul {
+  display:flex;
 }
 
 
@@ -581,6 +578,7 @@ button {
 }
 
 .alert-wrapper {
+  margin-top: 8rem;
   position: fixed;
   top: 4rem;
   right: 2rem;

@@ -10,7 +10,7 @@ const {check, validationResult} = require('express-validator');
 const User = require('../../models/User');
 
 //@route  GET api/auth
-//@desc   Get auth user
+//@desc   Authenticate user 
 //@access Public (public route don't need token)
 router.get('/', auth, async (req, res) => {
     try{
