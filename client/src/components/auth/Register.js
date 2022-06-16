@@ -2,11 +2,12 @@ import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 
 //import axios from 'axios';
 //destructure -> setAlet = props
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register }) => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -24,38 +25,36 @@ const Register = ({ setAlert }) => {
           //setAlert(msg, alertType)
           setAlert('Passwords do not match', 'danger');
       }else{
-          console.log(formData);
+          register({ name, email, password });
       }
   }
 
     /*//example of making a request without redux
-  const onSubmit = async e => {
-    e.preventDefault();
-    if(password !== password2){
-        console.log('Passwords do not match');
-    }else{
-        const newUser = {
-            name,
-            email,
-            password
-        }
-        try {
-            const config = {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }
-            const body = JSON.stringify(newUser);
-            //axios return a promise
-            const res = await axios.post('/api/users', body, config);
-            console.log(res.data);
-            console.log(res.url);
-            console.log(axios.url);
-        } catch (error) {
-            console.error(error.response.data);
-        }
-    }
-}
+    const onSubmit = async e => {
+      e.preventDefault();
+      if(password !== password2){
+          console.log('Passwords do not match');
+      }else{
+          const newUser = {
+              name,
+              email,
+              password
+          }
+          try {
+              const config = {
+                  headers: {
+                      'Content-Type': 'application/json'
+                  }
+              }
+              const body = JSON.stringify(newUser);
+              //axios return a promise
+              const res = await axios.post('/api/users', body, config);
+              console.log(res.data);
+          } catch (error) {
+              console.error(error.response.data);
+          }
+      }
+  }
     */
     
   return (
@@ -72,7 +71,6 @@ const Register = ({ setAlert }) => {
             name="name"
             value={name}
             onChange={e => onChange(e)}
-            required
           />
         </div>
         <div className="form-group">
@@ -82,7 +80,6 @@ const Register = ({ setAlert }) => {
             name="email"
             value={email}
             onChange={e => onChange(e)}
-            required
           />
           <small className="form-text">
             This site uses Gravatar so if you want a profile image, use a
@@ -97,7 +94,6 @@ const Register = ({ setAlert }) => {
             value={password}
             minLength="6"
             onChange={e => onChange(e)}
-            required
           />
         </div>
         <div className="form-group">
@@ -107,8 +103,6 @@ const Register = ({ setAlert }) => {
             name="password2"
             value={password2}
             onChange={e => onChange(e)}
-            minLength="6"
-            required
           />
         </div>
         <input type="submit" className="btn btn-primary" value="Register" />
@@ -121,6 +115,10 @@ const Register = ({ setAlert }) => {
 };
 
 Register.propTypes = {
-  setAlert: PropTypes.func.isRequired
+  setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired
 };
-export default connect(null, { setAlert })(Register);
+export default connect(
+  null, 
+  { setAlert, register }
+)(Register);
