@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
-import {Link} from 'react-router-dom';
+import {Link, Navigate} from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 
 //import axios from 'axios';
 //destructure -> setAlet = props
-const Register = ({ setAlert, register }) => {
+const Register = ({ setAlert, register, isAuthenticated }) => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -27,8 +27,14 @@ const Register = ({ setAlert, register }) => {
       }else{
           register({ name, email, password });
       }
-  }
-
+    }
+    
+    //Redirect if register
+    if(isAuthenticated) {
+      //return <Navigate to="/login"/> 
+      //redirect to login page, but the login page will redirect to dashboard with isAuthenticated true, so it will go to dashboard if we do navigate to login
+      return <Navigate to="/dashboard"/> 
+    }
     /*//example of making a request without redux
     const onSubmit = async e => {
       e.preventDefault();
@@ -116,9 +122,15 @@ const Register = ({ setAlert, register }) => {
 
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
-  register: PropTypes.func.isRequired
+  register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
 };
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
 export default connect(
-  null, 
+  mapStateToProps, 
   { setAlert, register }
 )(Register);

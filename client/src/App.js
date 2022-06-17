@@ -1,6 +1,6 @@
 import './App.css';
 
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
@@ -11,8 +11,27 @@ import Alert from './components/layout/Alert';
 import { Provider } from 'react-redux';
 import store from './store';
 
+import { loadUser } from './actions/auth';
+import setAuthToken from './utils/setAuthToken';
 
-const App = () => (
+
+if(localStorage.token) {
+  setAuthToken(localStorage.token);
+}
+
+
+const App = () => {
+  //when state update, the useEffect keep running and it will be a constant loop 
+  //unless we add a second parameter [], empty bracket. This only run once (on mount or unmount)
+  //if we put property in [], when the property update, useEffect will update
+  useEffect(() => {
+    store.dispatch(loadUser());
+    //console.log('useEffect i fire once');
+    //run twice since React.strictMode on 
+  }, []);
+
+
+  return(
   <Provider store={store}>
   <Router>
     <Fragment>
@@ -27,7 +46,7 @@ const App = () => (
   </Router>
   </Provider>
   
-);
+)};
     
 
 export default App;
