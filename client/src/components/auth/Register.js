@@ -29,7 +29,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
       }
     }
     
-    //Redirect if register
+    //Redirect if registered
     if(isAuthenticated) {
       //return <Navigate to="/login"/> 
       //redirect to login page, but the login page will redirect to dashboard with isAuthenticated true, so it will go to dashboard if we do navigate to login
